@@ -1,0 +1,55 @@
+<h4 class="ui horizontal divider header">
+  Simple list of strings
+</h4>
+<div class="ui list" *ngFor="let c of cities">
+  <div class="item">{{c}}</div>
+</div>
+<h4 class="ui horizontal divider header">
+  List of objects
+</h4>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of people">
+      <td>{{p.name}}</td>
+      <td>{{p.age}}</td>
+      <td>{{p.city}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 class="ui horizontal divider header">
+  Nested data
+</h4>
+
+<div *ngFor="let item of peopleByCity">
+  <h2 class="ui header">{{item.city}}</h2>
+  <table  class="ui celled table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of people">
+        <td>{{p.name}}</td>
+        <td>{{p.age}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br>
+<h4 class="ui horizontal divider header">
+  List whit index
+</h4>
+<div class="ui list" *ngFor="let c of cities; let num = index">
+  <div class="item">{{num + 1}} - {{c}}</div>
+</div>
