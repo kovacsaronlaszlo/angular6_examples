@@ -13,7 +13,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    IntroComponent,
     NgClassExampleComponent,
     NgForExampleComponent,
     NgNonBindableExampleComponent,
