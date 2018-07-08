@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { IntroComponent } from './intro/intro.component';
 import { NgClassExampleComponent } from './ng-class-example/ng-class-example.component';
 import { NgForExampleComponent } from './ng-for-example/ng-for-example.component';
 import { NgNonBindableExampleComponent } from './ng-non-bindable-example/ng-non-bindable-example.component';
