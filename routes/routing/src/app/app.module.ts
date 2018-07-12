@@ -60,9 +60,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes), // <-- routes
-
-    // added this for our child module
+    RouterModule.forRoot(routes),
     ProductsModule
   ],
   providers: [
