@@ -5,7 +5,7 @@ import {dispatchEvent, ConsoleSpy} from '../utils';
 
 import { DemoFormWithEventsComponent } from './demo-form-with-events.component';
 
-describe('DemoFormWithEventsComponent', () => {
+describe('DemoFormWithEventsComponent (Long)', () => {
   let component: DemoFormWithEventsComponent;
   let fixture: ComponentFixture<DemoFormWithEventsComponent>;
 
@@ -25,63 +25,42 @@ describe('DemoFormWithEventsComponent', () => {
       .compileComponents();
   }));
 
-  beforeEach(() => {
+
+  afterAll(() => (<any>window).console = originalConsole);
+
+  it('validates and triggers events', fakeAsync( () => {
     fixture = TestBed.createComponent(DemoFormWithEventsComponent);
     component = fixture.componentInstance;
     el = fixture.debugElement.nativeElement;
     input = fixture.debugElement.query(By.css('input')).nativeElement;
     form = fixture.debugElement.query(By.css('form')).nativeElement;
     fixture.detectChanges();
-  });
 
-
-  afterAll(() => (<any>window).console = originalConsole);
-
-  it('displays errors with no sku', fakeAsync( () => {
     input.value = '';
     dispatchEvent(input, 'input');
     fixture.detectChanges();
+    tick();
 
 
-    const msgs = el.querySelectorAll('.ui.error.message');
+    let msgs = el.querySelectorAll('.ui.error.message');
     expect(msgs[0].innerHTML).toContain('SKU is invalid');
     expect(msgs[1].innerHTML).toContain('SKU is required');
-  }));
 
-  it('displays no errors when sku has a value', fakeAsync( () => {
+
     input.value = 'XYZ';
     dispatchEvent(input, 'input');
     fixture.detectChanges();
+    tick();
 
-    const msgs = el.querySelectorAll('.ui.error.message');
+    msgs = el.querySelectorAll('.ui.error.message');
     expect(msgs.length).toEqual(0);
-  }));
-
-  it('handles sku value changes', fakeAsync( () => {
-    input.value = 'XYZ';
-    dispatchEvent(input, 'input');
-    tick();
-
-    expect(fakeConsole.logs).toContain('sku changed to: XYZ');
-  }));
-
-  it('handles form changes', fakeAsync(() => {
-    input.value = 'XYZ';
-    dispatchEvent(input, 'input');
-    tick();
-
-    expect(fakeConsole.logs).toContain('form changed to: [object Object]');
-  }));
-
-  it('handles form submission', fakeAsync((tcb) => {
-    input.value = 'ABC';
-    dispatchEvent(input, 'input');
-    tick();
 
     fixture.detectChanges();
     dispatchEvent(form, 'submit');
     tick();
 
-    expect(fakeConsole.logs).toContain('you submitted value: ABC');
+
+    expect(fakeConsole.logs).toContain('you submitted value: XYZ');
   }));
+
 });
